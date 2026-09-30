@@ -47,7 +47,6 @@
           <a href="#drivers" class="nav-link">For Drivers</a>
           <a href="#owners" class="nav-link">For Space Owners</a>
           <a href="#how-it-works" class="nav-link">How It Works</a>
-          <a href="#spot-explorer" class="nav-link">Explore Spots</a>
           <a href="#faqs" class="nav-link">FAQs</a>
           <a href="#waitlist" class="nav-link nav-highlight">Join Waitlist</a>
         </nav>
@@ -61,7 +60,7 @@
       <!-- Hero Section -->
       <section class="hero" aria-labelledby="hero-heading">
         <div class="container hero-grid">
-          <div class="hero-copy">
+          <div class="hero-copy scroll-reveal">
             <div class="eyebrow-wrapper">
               <span class="eyebrow pill"><span class="status-dot"></span> Sri Lanka's Peer-to-Peer Parking Marketplace</span>
             </div>
@@ -101,15 +100,45 @@
             <p class="microcopy">Pre-release informational portal. Direct bookings and host controls launch natively upon public app releases.</p>
           </div>
 
-          <div class="hero-visual" aria-label="Preview of the OpenSpace mobile app">
-            <div class="hero-glow"></div>
-            <div class="screen-stage hero-screen">
-              <img src="./assets/imgRectangle1.png" alt="OpenSpace app home screen showing instant parking booking" width="320" height="690" />
-              <div class="floating-badge hero-float-badge">
-                <span class="badge-indicator"></span>
+          <!-- Professional Smartphone Device Showcase 1 -->
+          <div class="hero-visual scroll-reveal" aria-label="Preview of the OpenSpace mobile app">
+            <div class="phone-showcase">
+              <div class="ambient-glow hero-ambient"></div>
+              
+              <!-- Floating Contextual Badges -->
+              <div class="floating-chip chip-wallet">
+                <span class="chip-icon">💳</span>
+                <div>
+                  <small>OpenSpace Wallet</small>
+                  <strong>Rs 2,000.00 • Instant Pay</strong>
+                </div>
+              </div>
+
+              <div class="floating-chip chip-session">
+                <span class="status-dot"></span>
                 <div>
                   <small>Active Session</small>
                   <strong>Colombo City Center • Bay A1</strong>
+                </div>
+              </div>
+
+              <!-- High-End Device Mockup Chassis -->
+              <div class="phone-chassis">
+                <div class="phone-side-btn btn-power"></div>
+                <div class="phone-side-btn btn-vol-up"></div>
+                <div class="phone-side-btn btn-vol-down"></div>
+                
+                <div class="phone-screen-container">
+                  <!-- Dynamic Island Pill -->
+                  <div class="dynamic-island">
+                    <span class="camera-lens"></span>
+                  </div>
+
+                  <!-- Screen Image -->
+                  <img src="./assets/imgRectangle1.png" alt="OpenSpace app home screen showing instant parking booking" class="phone-screen-img" width="310" height="660" />
+
+                  <!-- Glass Glare Effect -->
+                  <div class="phone-glare-overlay"></div>
                 </div>
               </div>
             </div>
@@ -118,7 +147,7 @@
       </section>
 
       <!-- Trust & Verification Bar -->
-      <section class="trust-bar" aria-label="Key guarantees">
+      <section class="trust-bar scroll-reveal" aria-label="Key guarantees">
         <div class="container trust-inner">
           <div class="trust-item">
             <span class="trust-icon">🛡️</span>
@@ -142,13 +171,13 @@
       <!-- The Urban Parking Challenge (Problem Section) -->
       <section class="section problem-section" id="problem" aria-labelledby="problem-heading">
         <div class="container">
-          <div class="section-heading center">
+          <div class="section-heading center scroll-reveal">
             <span class="eyebrow pill">THE URBAN PARKING CHALLENGE</span>
             <h2 id="problem-heading">Two Disconnected Realities In Colombo</h2>
             <p>Every day, drivers circle busy commercial blocks while secure private spaces sit idle behind closed gates just metres away.</p>
           </div>
           <div class="problem-grid">
-            <article class="problem-card driver-card">
+            <article class="problem-card driver-card scroll-reveal">
               <div class="card-label-badge warning-badge">
                 <img src="./assets/imgSvg3.svg" alt="" width="16" height="16" />
                 <span>For Drivers Searching For Parking</span>
@@ -172,7 +201,7 @@
               <a class="text-link" href="#drivers">Explore the Driver experience in detail <span aria-hidden="true">→</span></a>
             </article>
 
-            <article class="problem-card owner-card">
+            <article class="problem-card owner-card scroll-reveal">
               <div class="card-label-badge success-badge">
                 <img src="./assets/imgSvg4.svg" alt="" width="16" height="16" />
                 <span>For Space Owners &amp; Commercial Lots</span>
@@ -202,38 +231,38 @@
       <!-- How OpenSpace Operates (Step-by-Step Experience) -->
       <section class="section works-section" id="how-it-works" aria-labelledby="works-heading">
         <div class="container">
-          <div class="section-heading center">
+          <div class="section-heading center scroll-reveal">
             <span class="eyebrow">CLEAR STEP-BY-STEP EXPERIENCE</span>
             <h2 id="works-heading">How OpenSpace Operates</h2>
             <p>A transparent, dual-sided marketplace designed around clarity, safety, and mutual respect.</p>
           </div>
 
-          <div class="journey-tabs" role="tablist" aria-label="Choose a journey">
+          <div class="journey-tabs scroll-reveal" role="tablist" aria-label="Choose a journey">
             <button type="button" role="tab" id="driver-tab" aria-controls="driver-steps" aria-selected="true">Driver Journey</button>
             <button type="button" role="tab" id="owner-tab" aria-controls="owner-steps" aria-selected="false" tabindex="-1">Space Owner Journey</button>
           </div>
 
           <!-- Driver Journey Panel -->
           <div class="steps-grid" id="driver-steps" role="tabpanel" aria-labelledby="driver-tab">
-            <article class="step">
+            <article class="step scroll-reveal">
               <span class="step-num">01</span>
               <h3>Find Suitable Parking</h3>
               <p>Search by destination in Sri Lanka. Browse spaces matching your vehicle type, shelter preference, and security needs.</p>
               <span class="step-tag-pill">Map &amp; List Discovery</span>
             </article>
-            <article class="step">
+            <article class="step scroll-reveal">
               <span class="step-num">02</span>
               <h3>Choose Dates &amp; Duration</h3>
               <p>Select flexible parking durations — whether for a 2-hour shopping trip or weekly business parking near your workplace.</p>
               <span class="step-tag-pill">Transparent Time Slots</span>
             </article>
-            <article class="step">
+            <article class="step scroll-reveal">
               <span class="step-num">03</span>
               <h3>Review &amp; Reserve in App</h3>
               <p>Inspect verified upfront tariffs, host access notes, and amenities before confirming your digital reservation.</p>
               <span class="step-tag-pill">No Hidden Markups</span>
             </article>
-            <article class="step">
+            <article class="step scroll-reveal">
               <span class="step-num">04</span>
               <h3>Follow Arrival Instructions</h3>
               <p>Navigate smoothly with turn-by-turn routing and present your digital QR or code for gate access upon arrival.</p>
@@ -274,7 +303,7 @@
       <!-- Designed for Drivers Section -->
       <section class="section driver-section" id="drivers" aria-labelledby="drivers-heading">
         <div class="container split-layout">
-          <div class="section-copy">
+          <div class="section-copy scroll-reveal">
             <span class="eyebrow">DESIGNED FOR DRIVERS</span>
             <h2 id="drivers-heading">A Seamless Journey From Search To Spot</h2>
             <p>OpenSpace eliminates the guesswork of urban parking in Sri Lanka with Live Availability, verified host information, clear photos, and digital check-ins.</p>
@@ -307,10 +336,42 @@
             </div>
           </div>
 
-          <div class="product-visual driver-visual">
-            <div class="map-orbit"></div>
-            <div class="screen-stage map-screen">
-              <img src="./assets/imgRectangle3.png" alt="OpenSpace map screen displaying parking locations around Colombo" width="310" height="670" />
+          <!-- Professional Smartphone Device Showcase 2 (Driver Map) -->
+          <div class="product-visual driver-visual scroll-reveal">
+            <div class="phone-showcase">
+              <div class="ambient-glow map-ambient"></div>
+              
+              <!-- Floating Map Chips -->
+              <div class="floating-chip chip-map-spot">
+                <span class="chip-icon">⌖</span>
+                <div>
+                  <small>Nearby Bay Found</small>
+                  <strong>Kollupitiya Marine Drive • 0.3 km</strong>
+                </div>
+              </div>
+
+              <div class="floating-chip chip-map-amenity">
+                <span class="chip-icon">✓</span>
+                <div>
+                  <small>Spot Verified</small>
+                  <strong>Covered • CCTV • EV Ready</strong>
+                </div>
+              </div>
+
+              <!-- High-End Device Mockup Chassis -->
+              <div class="phone-chassis">
+                <div class="phone-side-btn btn-power"></div>
+                <div class="phone-side-btn btn-vol-up"></div>
+                <div class="phone-side-btn btn-vol-down"></div>
+                
+                <div class="phone-screen-container">
+                  <div class="dynamic-island">
+                    <span class="camera-lens"></span>
+                  </div>
+                  <img src="./assets/imgRectangle3.png" alt="OpenSpace map screen displaying parking locations around Colombo" class="phone-screen-img" width="310" height="660" />
+                  <div class="phone-glare-overlay"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -319,7 +380,7 @@
       <!-- Earn With Your Space (Space Owners Section) -->
       <section class="section owner-section" id="owners" aria-labelledby="owners-heading">
         <div class="container split-layout owner-layout">
-          <div class="section-copy">
+          <div class="section-copy scroll-reveal">
             <span class="eyebrow">EARN WITH YOUR SPACE</span>
             <h2 id="owners-heading">A High 90% Host Payout Rate. Zero Listing Fees.</h2>
             <p>OpenSpace operates on an industry-leading revenue split: you retain 90% of every completed booking tariff. OpenSpace retains 10% to power verification, customer support, and system security.</p>
@@ -345,139 +406,43 @@
             <a class="button button-bright" href="#waitlist">Learn How Space Hosting Operates <span aria-hidden="true">→</span></a>
           </div>
 
-          <div class="product-visual host-visual">
-            <div class="host-glow"></div>
-            <div class="screen-stage host-screen">
-              <img src="./assets/host-listings.jpg" alt="OpenSpace host app showing parking listings in Colombo" width="310" height="650" />
+          <!-- Professional Smartphone Device Showcase 3 (Host Listings) -->
+          <div class="product-visual host-visual scroll-reveal">
+            <div class="phone-showcase">
+              <div class="ambient-glow host-ambient"></div>
+              
+              <!-- Floating Host Chips -->
+              <div class="floating-chip chip-payout">
+                <span class="chip-icon">💰</span>
+                <div>
+                  <small>Payout Deposited</small>
+                  <strong>+Rs 1,800 • Direct Bank Transfer</strong>
+                </div>
+              </div>
+
+              <div class="floating-chip chip-bays">
+                <span class="status-dot"></span>
+                <div>
+                  <small>Host Dashboard</small>
+                  <strong>17 Total Bays Managed</strong>
+                </div>
+              </div>
+
+              <!-- High-End Device Mockup Chassis -->
+              <div class="phone-chassis dark-chassis">
+                <div class="phone-side-btn btn-power"></div>
+                <div class="phone-side-btn btn-vol-up"></div>
+                <div class="phone-side-btn btn-vol-down"></div>
+                
+                <div class="phone-screen-container">
+                  <div class="dynamic-island">
+                    <span class="camera-lens"></span>
+                  </div>
+                  <img src="./assets/host-listings.jpg" alt="OpenSpace host app showing parking listings in Colombo" class="phone-screen-img" width="310" height="650" />
+                  <div class="phone-glare-overlay"></div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Interactive Colombo Spot Explorer (NEW) -->
-      <section class="section spot-explorer-section" id="spot-explorer" aria-labelledby="explorer-heading">
-        <div class="container">
-          <div class="section-heading center">
-            <span class="eyebrow pill">COLOMBO NETWORK PREVIEW</span>
-            <h2 id="explorer-heading">Explore Colombo Parking Bays</h2>
-            <p>A preview of real-world private driveways, commercial bays, and secure parking areas coming to OpenSpace.</p>
-          </div>
-
-          <!-- Filter Pills -->
-          <div class="spot-filter-bar" role="tablist" aria-label="Filter parking spots">
-            <button type="button" class="filter-btn active" data-filter="all">All Spots</button>
-            <button type="button" class="filter-btn" data-filter="covered">🏠 Covered Bay</button>
-            <button type="button" class="filter-btn" data-filter="ev">⚡ EV Charging</button>
-            <button type="button" class="filter-btn" data-filter="cctv">📹 CCTV Monitored</button>
-            <button type="button" class="filter-btn" data-filter="24h">🕒 24/7 Access</button>
-          </div>
-
-          <!-- Spot Cards Grid -->
-          <div class="spots-grid" id="spots-grid">
-            <article class="spot-card" data-tags="covered cctv">
-              <div class="spot-badge-row">
-                <span class="spot-live"><span class="status-dot"></span> Live in Colombo</span>
-                <span class="spot-price">LKR 140<small>/hr</small></span>
-              </div>
-              <h3 class="spot-title">Colombo City Center Bay</h3>
-              <p class="spot-address">📍 137 Sir James Pieris Mawatha, Colombo 02</p>
-              <div class="spot-amenities">
-                <span class="amenity-tag">🏠 Covered</span>
-                <span class="amenity-tag">📹 CCTV</span>
-                <span class="amenity-tag">🚗 Car &amp; SUV</span>
-              </div>
-              <div class="spot-foot">
-                <span>0.2 km from destination</span>
-                <span class="spot-status-txt">1 Slot Ready</span>
-              </div>
-            </article>
-
-            <article class="spot-card" data-tags="covered ev cctv 24h">
-              <div class="spot-badge-row">
-                <span class="spot-live"><span class="status-dot"></span> Live in Colombo</span>
-                <span class="spot-price">LKR 160<small>/hr</small></span>
-              </div>
-              <h3 class="spot-title">One Galle Face Premier Bay</h3>
-              <p class="spot-address">📍 Galle Face Center Road, Colombo 01</p>
-              <div class="spot-amenities">
-                <span class="amenity-tag">⚡ EV Charging</span>
-                <span class="amenity-tag">🏠 Covered</span>
-                <span class="amenity-tag">🕒 24/7</span>
-              </div>
-              <div class="spot-foot">
-                <span>0.4 km from Galle Face</span>
-                <span class="spot-status-txt">Instant Pass</span>
-              </div>
-            </article>
-
-            <article class="spot-card" data-tags="cctv 24h">
-              <div class="spot-badge-row">
-                <span class="spot-live"><span class="status-dot"></span> Live in Colombo</span>
-                <span class="spot-price">LKR 120<small>/hr</small></span>
-              </div>
-              <h3 class="spot-title">Union Place Business Plaza</h3>
-              <p class="spot-address">📍 Union Place, Colombo 02</p>
-              <div class="spot-amenities">
-                <span class="amenity-tag">📹 CCTV</span>
-                <span class="amenity-tag">🕒 24/7 Access</span>
-                <span class="amenity-tag">🚶 Gated Entry</span>
-              </div>
-              <div class="spot-foot">
-                <span>0.1 km from Union Place</span>
-                <span class="spot-status-txt">2 Slots Ready</span>
-              </div>
-            </article>
-
-            <article class="spot-card" data-tags="covered cctv">
-              <div class="spot-badge-row">
-                <span class="spot-live"><span class="status-dot"></span> Live in Colombo</span>
-                <span class="spot-price">LKR 100<small>/hr</small></span>
-              </div>
-              <h3 class="spot-title">Kollupitiya Marine Drive Bay</h3>
-              <p class="spot-address">📍 Marine Drive, Kollupitiya, Colombo 03</p>
-              <div class="spot-amenities">
-                <span class="amenity-tag">🏠 Covered Carport</span>
-                <span class="amenity-tag">📹 Security Guard</span>
-              </div>
-              <div class="spot-foot">
-                <span>Near Kollupitiya Station</span>
-                <span class="spot-status-txt">Gated Access</span>
-              </div>
-            </article>
-
-            <article class="spot-card" data-tags="cctv 24h">
-              <div class="spot-badge-row">
-                <span class="spot-live"><span class="status-dot"></span> Live in Colombo</span>
-                <span class="spot-price">LKR 80<small>/hr</small></span>
-              </div>
-              <h3 class="spot-title">Wellawatte Canal View Park</h3>
-              <p class="spot-address">📍 W.A. Silva Mawatha, Colombo 06</p>
-              <div class="spot-amenities">
-                <span class="amenity-tag">🕒 24/7 Access</span>
-                <span class="amenity-tag">📹 Monitored</span>
-              </div>
-              <div class="spot-foot">
-                <span>Near High Level Road</span>
-                <span class="spot-status-txt">Budget Rate</span>
-              </div>
-            </article>
-
-            <article class="spot-card" data-tags="covered ev cctv">
-              <div class="spot-badge-row">
-                <span class="spot-live"><span class="status-dot"></span> Live in Colombo</span>
-                <span class="spot-price">LKR 150<small>/hr</small></span>
-              </div>
-              <h3 class="spot-title">Cinnamon Gardens Manor Bay</h3>
-              <p class="spot-address">📍 Ward Place, Colombo 07</p>
-              <div class="spot-amenities">
-                <span class="amenity-tag">⚡ EV Wallbox</span>
-                <span class="amenity-tag">🏠 Private Porch</span>
-              </div>
-              <div class="spot-foot">
-                <span>Close to Town Hall</span>
-                <span class="spot-status-txt">Quiet Bay</span>
-              </div>
-            </article>
           </div>
         </div>
       </section>
@@ -485,13 +450,13 @@
       <!-- Real-World Utility (Where OpenSpace Makes A Difference) -->
       <section class="section uses-section" id="use-cases" aria-labelledby="uses-heading">
         <div class="container">
-          <div class="section-heading center">
+          <div class="section-heading center scroll-reveal">
             <span class="eyebrow">REAL-WORLD UTILITY</span>
             <h2 id="uses-heading">Where OpenSpace Makes A Difference</h2>
             <p>From busy business districts to weekend matches, here are occasions the platform is built to support.</p>
           </div>
           <div class="use-grid">
-            <article class="use-card">
+            <article class="use-card scroll-reveal">
               <div class="use-icon-wrap">
                 <span class="use-icon">🏢</span>
               </div>
@@ -500,7 +465,7 @@
               <span class="use-tag-pill">Supports: Daily, Weekly &amp; Monthly arrangements</span>
             </article>
 
-            <article class="use-card">
+            <article class="use-card scroll-reveal">
               <div class="use-icon-wrap">
                 <span class="use-icon">🎟️</span>
               </div>
@@ -509,7 +474,7 @@
               <span class="use-tag-pill">Supports: Short-term hourly event slots</span>
             </article>
 
-            <article class="use-card">
+            <article class="use-card scroll-reveal">
               <div class="use-icon-wrap">
                 <span class="use-icon">🚆</span>
               </div>
@@ -521,14 +486,15 @@
         </div>
       </section>
 
-      <!-- Pre-Launch Early Access Waitlist (NEW) -->
+      <!-- Pre-Launch Early Access Waitlist (Name, Email, Location with Fake Save Animation) -->
       <section class="section waitlist-section" id="waitlist" aria-labelledby="waitlist-heading">
         <div class="container">
-          <div class="waitlist-box">
-            <div class="waitlist-content">
+          <div class="waitlist-box scroll-reveal">
+            <!-- Normal Form State -->
+            <div class="waitlist-content" id="waitlist-content-wrapper">
               <span class="eyebrow pill small"><span class="status-dot"></span> PRIORITY COLOMBO ONBOARDING</span>
               <h2 id="waitlist-heading">Get Early Beta Access in Colombo</h2>
-              <p>Be the first to park with zero hassle, or be among the founding hosts in Colombo. Early signups receive exclusive beta credits and zero platform fees for 30 days.</p>
+              <p>Be the first to park with zero hassle, or be among our founding hosts in Colombo. Reserve your priority pass today.</p>
               
               <form class="waitlist-form" id="waitlist-form" novalidate>
                 <div class="role-selector" role="radiogroup" aria-label="Select your role">
@@ -542,29 +508,67 @@
                   </label>
                 </div>
 
-                <div class="form-row">
+                <div class="form-grid">
                   <div class="input-field">
-                    <label for="user-contact" class="sr-only">Email or Mobile Number</label>
-                    <input type="text" id="user-contact" placeholder="Email or Mobile (e.g. 077 123 4567)" required />
+                    <label for="waitlist-name" class="field-label">Full Name</label>
+                    <input type="text" id="waitlist-name" placeholder="e.g. Kasun Perera" required />
                   </div>
-                  <div class="select-field">
-                    <label for="user-area" class="sr-only">Preferred Colombo Area</label>
-                    <select id="user-area" aria-label="Select Colombo Area">
-                      <option value="Colombo 01 - Fort">Colombo 01 (Fort)</option>
-                      <option value="Colombo 02 - Slave Island">Colombo 02 (Slave Island / Union Place)</option>
+                  <div class="input-field">
+                    <label for="waitlist-email" class="field-label">Email Address</label>
+                    <input type="email" id="waitlist-email" placeholder="e.g. kasun@gmail.com" required />
+                  </div>
+                  <div class="input-field select-field">
+                    <label for="waitlist-location" class="field-label">Location in Colombo</label>
+                    <select id="waitlist-location" aria-label="Select Colombo Location">
+                      <option value="Colombo 01 - Fort / Pettah">Colombo 01 (Fort / Pettah)</option>
+                      <option value="Colombo 02 - Slave Island / Union Place">Colombo 02 (Slave Island / Union Place)</option>
                       <option value="Colombo 03 - Kollupitiya" selected>Colombo 03 (Kollupitiya)</option>
                       <option value="Colombo 04 - Bambalapitiya">Colombo 04 (Bambalapitiya)</option>
-                      <option value="Colombo 05 - Havelock">Colombo 05 (Havelock / Thimbirigasyaya)</option>
+                      <option value="Colombo 05 - Havelock Town">Colombo 05 (Havelock / Thimbirigasyaya)</option>
+                      <option value="Colombo 06 - Wellawatte">Colombo 06 (Wellawatte)</option>
                       <option value="Colombo 07 - Cinnamon Gardens">Colombo 07 (Cinnamon Gardens)</option>
-                      <option value="Other Colombo Suburbs">Other Colombo Suburb</option>
+                      <option value="Colombo 08 - Borella">Colombo 08 (Borella)</option>
+                      <option value="Greater Colombo Suburbs">Greater Colombo Suburbs</option>
                     </select>
                   </div>
+                </div>
+
+                <div class="form-actions">
                   <button type="submit" class="button button-primary waitlist-submit" id="waitlist-btn">
-                    <span>Claim Early Access</span> <span aria-hidden="true">🚀</span>
+                    <span class="btn-text">Claim Early Access</span>
+                    <span class="btn-icon" aria-hidden="true">🚀</span>
                   </button>
                 </div>
+
                 <div class="form-feedback" id="form-feedback" aria-live="polite"></div>
               </form>
+            </div>
+
+            <!-- Fake Celebration Animation Card (Rendered via JS on submit) -->
+            <div class="waitlist-celebration" id="waitlist-celebration" hidden>
+              <!-- Confetti Burst Particles -->
+              <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
+
+              <div class="celebration-badge-wrap">
+                <div class="celebration-circle">
+                  <svg class="checkmark-svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle-bg" cx="26" cy="26" r="24" fill="none"/>
+                    <path class="checkmark-stem" fill="none" d="M14 27l7 7 16-16"/>
+                  </svg>
+                </div>
+              </div>
+
+              <h3 class="celebration-title" id="celebration-title">You're On The Priority List!</h3>
+              <p class="celebration-text" id="celebration-text">We've saved your early beta pass for Colombo. Watch your inbox for your private access code when rollout begins.</p>
+
+              <div class="celebration-details" id="celebration-details">
+                <span class="detail-badge" id="celebration-role-badge">🚗 Priority Driver</span>
+                <span class="detail-badge" id="celebration-loc-badge">📍 Colombo 03</span>
+              </div>
+
+              <button type="button" class="button button-outline celebration-reset-btn" id="celebration-reset">
+                <span>Register Another Person / Space</span>
+              </button>
             </div>
           </div>
         </div>
@@ -573,12 +577,12 @@
       <!-- Frequently Asked Questions -->
       <section class="section faq-section" id="faqs" aria-labelledby="faq-heading">
         <div class="container faq-container">
-          <div class="section-heading center">
+          <div class="section-heading center scroll-reveal">
             <span class="eyebrow">CLEAR ANSWERS</span>
             <h2 id="faq-heading">Frequently Asked Questions</h2>
             <p>Everything you need to know about our upcoming release in Sri Lanka.</p>
           </div>
-          <div class="faq-list">
+          <div class="faq-list scroll-reveal">
             <details>
               <summary>What is OpenSpace?</summary>
               <p>OpenSpace is a mobile parking marketplace that connects drivers with suitable parking spaces offered by private home and commercial property owners in Sri Lanka.</p>
@@ -621,8 +625,8 @@
 
       <!-- Closing CTA Section -->
       <section class="section closing-section" id="about" aria-labelledby="closing-heading">
-        <div class="container closing-inner">
-          <!-- Replaced green square mark with OpenSpace Official Logo as requested -->
+        <div class="container closing-inner scroll-reveal">
+          <!-- Replaced green square mark with OpenSpace Official Logo -->
           <div class="closing-logo-wrap">
             <img src="./assets/imgChatGptImageSep52026092712Pm11.png" alt="OpenSpace Logo" class="closing-brand-logo" width="220" height="52" />
           </div>
@@ -685,7 +689,6 @@
           <a href="#drivers">For Drivers</a>
           <a href="#owners">For Space Owners</a>
           <a href="#how-it-works">How It Works</a>
-          <a href="#spot-explorer">Colombo Spots</a>
           <a href="#faqs">Common Questions</a>
         </div>
 

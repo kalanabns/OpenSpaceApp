@@ -1,4 +1,4 @@
-// OpenSpace Main Application Scripts
+// OpenSpace Landing Application Logic
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Top-Left Logo Click -> Move Smoothly to Top
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         top: 0,
         behavior: 'smooth'
       });
-      // Clear hash from URL cleanly if any
       if (window.location.hash) {
         history.pushState(null, null, window.location.pathname);
       }
@@ -66,37 +65,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Colombo Spot Explorer Filters
-  const filterButtons = document.querySelectorAll('.spot-filter-bar .filter-btn');
-  const spotCards = document.querySelectorAll('.spots-grid .spot-card');
+  // 4. Interactive 3D Perspective Tilt on Phone Devices
+  const phoneShowcases = document.querySelectorAll('.phone-showcase');
+  phoneShowcases.forEach(showcase => {
+    showcase.addEventListener('mousemove', (e) => {
+      const rect = showcase.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      const rotateX = -(y / (rect.height / 2)) * 7;
+      const rotateY = (x / (rect.width / 2)) * 7;
+      
+      const chassis = showcase.querySelector('.phone-chassis');
+      if (chassis) {
+        chassis.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      }
+    });
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-      spotCards.forEach(card => {
-        if (filter === 'all') {
-          card.classList.remove('hidden');
-        } else {
-          const tags = card.dataset.tags || '';
-          if (tags.includes(filter)) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        }
-      });
+    showcase.addEventListener('mouseleave', () => {
+      const chassis = showcase.querySelector('.phone-chassis');
+      if (chassis) {
+        chassis.style.transform = '';
+      }
     });
   });
 
-  // 5. Pre-Launch Waitlist Form
+  // 5. Pre-Launch Waitlist Form with Fake Save Animation
   const waitlistForm = document.getElementById('waitlist-form');
   const roleOptions = document.querySelectorAll('.role-option');
   const feedbackEl = document.getElementById('form-feedback');
-  const contactInput = document.getElementById('user-contact');
+  const nameInput = document.getElementById('waitlist-name');
+  const emailInput = document.getElementById('waitlist-email');
+  const locationSelect = document.getElementById('waitlist-location');
+  const submitBtn = document.getElementById('waitlist-btn');
+  const formWrapper = document.getElementById('waitlist-content-wrapper');
+  const celebrationCard = document.getElementById('waitlist-celebration');
+  const confettiContainer = document.getElementById('confetti-container');
+  const resetBtn = document.getElementById('celebration-reset');
 
+  // Role toggle
   roleOptions.forEach(opt => {
     opt.addEventListener('click', () => {
       roleOptions.forEach(r => r.classList.remove('active'));
@@ -106,40 +113,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Form submit handler with fake save animation
   waitlistForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const value = contactInput?.value.trim();
-    if (!value || value.length < 5) {
-      if (feedbackEl) {
-        feedbackEl.className = 'form-feedback error';
-        feedbackEl.textContent = 'Please enter a valid email address or mobile number.';
-      }
-      contactInput?.focus();
+    if (feedbackEl) feedbackEl.textContent = '';
+    
+    // Validate Name
+    const nameVal = nameInput?.value.trim();
+    if (!nameVal || nameVal.length < 2) {
+      nameInput?.classList.add('input-error');
+      if (feedbackEl) feedbackEl.textContent = 'Please enter your full name.';
+      nameInput?.focus();
       return;
+    } else {
+      nameInput?.classList.remove('input-error');
     }
 
+    // Validate Email
+    const emailVal = emailInput?.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailVal || !emailRegex.test(emailVal)) {
+      emailInput?.classList.add('input-error');
+      if (feedbackEl) feedbackEl.textContent = 'Please enter a valid email address.';
+      emailInput?.focus();
+      return;
+    } else {
+      emailInput?.classList.remove('input-error');
+    }
+
+    const locVal = locationSelect?.value || 'Colombo 03 (Kollupitiya)';
     const selectedRole = document.querySelector('input[name="role"]:checked')?.value || 'driver';
-    const selectedArea = document.getElementById('user-area')?.value || 'Colombo';
 
-    // Store in localStorage for persistence
-    try {
-      localStorage.setItem('openspace_waitlist', JSON.stringify({
-        contact: value,
-        role: selectedRole,
-        area: selectedArea,
-        date: new Date().toISOString()
-      }));
-    } catch (_) {}
-
-    if (feedbackEl) {
-      feedbackEl.className = 'form-feedback success';
-      feedbackEl.textContent = `✓ Thank you! You have been added to the priority ${selectedRole === 'driver' ? 'Driver' : 'Space Host'} invite list for ${selectedArea}.`;
+    // Step 1: Animate button loading state
+    if (submitBtn) {
+      submitBtn.classList.add('is-loading');
+      submitBtn.innerHTML = '<span>Securing your priority pass...</span> ⏳';
     }
 
-    const submitBtn = document.getElementById('waitlist-btn');
+    // Step 2: Fake save latency (650ms), then trigger Celebration Animation
+    setTimeout(() => {
+      // Hide form
+      if (formWrapper) formWrapper.hidden = true;
+      
+      // Update Celebration details
+      const titleEl = document.getElementById('celebration-title');
+      const textEl = document.getElementById('celebration-text');
+      const roleBadge = document.getElementById('celebration-role-badge');
+      const locBadge = document.getElementById('celebration-loc-badge');
+      
+      const firstName = nameVal.split(' ')[0];
+      if (titleEl) titleEl.textContent = `You're on the list, ${firstName}!`;
+      if (textEl) {
+        textEl.textContent = `We've reserved early beta access for you in ${locVal}. When public rollout begins in Colombo, we'll send your priority invite to ${emailVal}.`;
+      }
+      if (roleBadge) {
+        roleBadge.textContent = selectedRole === 'driver' ? '🚗 Priority Driver' : '🏠 Founding Space Host';
+      }
+      if (locBadge) {
+        locBadge.textContent = `📍 ${locVal.split(' - ')[0]}`;
+      }
+
+      // Show Celebration
+      if (celebrationCard) {
+        celebrationCard.hidden = false;
+      }
+
+      // Trigger Confetti effect
+      createConfetti();
+    }, 650);
+  });
+
+  // Confetti Particle Generator
+  function createConfetti() {
+    if (!confettiContainer) return;
+    confettiContainer.innerHTML = '';
+    const colors = ['#22c55e', '#16a34a', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6'];
+    
+    for (let i = 0; i < 36; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = `${Math.random() * 100}%`;
+      piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDelay = `${Math.random() * 0.4}s`;
+      piece.style.animationDuration = `${1.8 + Math.random() * 1.2}s`;
+      confettiContainer.appendChild(piece);
+    }
+  }
+
+  // Reset celebration to form
+  resetBtn?.addEventListener('click', () => {
+    if (celebrationCard) celebrationCard.hidden = true;
+    if (formWrapper) formWrapper.hidden = false;
+    if (waitlistForm) waitlistForm.reset();
     if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Joined Priority List</span> ✓';
+      submitBtn.classList.remove('is-loading');
+      submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
     }
   });
 
@@ -149,54 +217,32 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 7. Safe Scroll Reveal Animations (Never leaves content stuck hidden)
-  const motionIsAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (motionIsAllowed && 'IntersectionObserver' in window) {
-    const revealGroups = [
-      '.hero-copy > *',
-      '.hero-screen',
-      '.trust-item',
-      '.section-heading',
-      '.problem-card',
-      '.journey-tabs',
-      '.steps-grid .step',
-      '.section-copy > *',
-      '.benefit-card',
-      '.commitment-box',
-      '.product-visual .screen-stage',
-      '.commission-card',
-      '.spot-card',
-      '.use-card',
-      '.waitlist-box',
-      '.faq-list details',
-      '.closing-inner > *',
-      '.footer-grid > *'
-    ];
+  // 7. Scroll-Down Reveal Animations
+  const revealElements = [...document.querySelectorAll('.scroll-reveal')];
+  revealElements.forEach((element, index) => {
+    element.style.setProperty('--reveal-delay', `${(index % 4) * 80}ms`);
+  });
 
-    const revealElements = [...document.querySelectorAll(revealGroups.join(', '))];
-    revealElements.forEach((element, index) => {
-      element.dataset.reveal = '';
-      element.style.setProperty('--reveal-delay', `${(index % 4) * 60}ms`);
-    });
-
-    document.body.classList.add('motion-ready');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
     }, {
-      threshold: 0.05,
-      rootMargin: '120px 0px 120px 0px'
+      threshold: 0.06,
+      rootMargin: '60px 0px 60px 0px'
     });
 
-    revealElements.forEach(element => revealObserver.observe(element));
+    revealElements.forEach(el => observer.observe(el));
 
-    // Absolute safety fallback: after 2 seconds, reveal all elements so nothing ever stays hidden
+    // Absolute safety timeout: reveal all elements so nothing stays hidden under automation or fast scrolls
     setTimeout(() => {
-      revealElements.forEach(el => el.classList.add('is-visible'));
-    }, 2000);
+      revealElements.forEach(el => el.classList.add('is-revealed'));
+    }, 1800);
+  } else {
+    revealElements.forEach(el => el.classList.add('is-revealed'));
   }
 });

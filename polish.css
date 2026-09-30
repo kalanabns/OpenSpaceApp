@@ -1,0 +1,62 @@
+/* ==========================================================================
+   OpenSpace Motion & Polish Layer
+   ========================================================================== */
+
+/* Safe Progressive Scroll Animations */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1), transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .motion-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .motion-ready .screen-stage[data-reveal] {
+    transform: translateY(20px) rotate(2.5deg);
+  }
+
+  .motion-ready .screen-stage[data-reveal].is-visible {
+    transform: translateY(0) rotate(2.5deg);
+  }
+}
+
+/* Fallback for print or reduced motion */
+@media print, (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Subtle micro-animations */
+.button-primary:active {
+  transform: translateY(0);
+}
+
+.hero-float-badge {
+  animation: float-badge 4s ease-in-out infinite alternate;
+}
+
+@keyframes float-badge {
+  0% { transform: translate(-50%, 0); }
+  100% { transform: translate(-50%, -6px); }
+}
+
+/* Underline decoration on closing headline */
+.highlight-under::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 4px;
+  background: #22c55e;
+  border-radius: 2px;
+  opacity: 0.65;
+}

@@ -14,11 +14,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./polish.css" />
-    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=2.1" />
+    <link rel="stylesheet" href="./polish.css?v=2.1" />
+    <script src="./main.js?v=2.1" defer></script>
   </head>
   <body>
+    <!-- Top Scroll Reading Progress Indicator -->
+    <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- Top Announcement Bar -->
@@ -101,7 +104,7 @@
           </div>
 
           <!-- Professional Smartphone Device Showcase 1 -->
-          <div class="hero-visual scroll-reveal" aria-label="Preview of the OpenSpace mobile app">
+          <div class="hero-visual scroll-reveal reveal-scale" aria-label="Preview of the OpenSpace mobile app">
             <div class="phone-showcase">
               <div class="ambient-glow hero-ambient"></div>
               
@@ -177,7 +180,7 @@
             <p>Every day, drivers circle busy commercial blocks while secure private spaces sit idle behind closed gates just metres away.</p>
           </div>
           <div class="problem-grid">
-            <article class="problem-card driver-card scroll-reveal">
+            <article class="problem-card driver-card scroll-reveal stagger-1">
               <div class="card-label-badge warning-badge">
                 <img src="./assets/imgSvg3.svg" alt="" width="16" height="16" />
                 <span>For Drivers Searching For Parking</span>
@@ -201,7 +204,7 @@
               <a class="text-link" href="#drivers">Explore the Driver experience in detail <span aria-hidden="true">→</span></a>
             </article>
 
-            <article class="problem-card owner-card scroll-reveal">
+            <article class="problem-card owner-card scroll-reveal stagger-2">
               <div class="card-label-badge success-badge">
                 <img src="./assets/imgSvg4.svg" alt="" width="16" height="16" />
                 <span>For Space Owners &amp; Commercial Lots</span>
@@ -244,25 +247,25 @@
 
           <!-- Driver Journey Panel -->
           <div class="steps-grid" id="driver-steps" role="tabpanel" aria-labelledby="driver-tab">
-            <article class="step scroll-reveal">
+            <article class="step scroll-reveal stagger-1">
               <span class="step-num">01</span>
               <h3>Find Suitable Parking</h3>
               <p>Search by destination in Sri Lanka. Browse spaces matching your vehicle type, shelter preference, and security needs.</p>
               <span class="step-tag-pill">Map &amp; List Discovery</span>
             </article>
-            <article class="step scroll-reveal">
+            <article class="step scroll-reveal stagger-2">
               <span class="step-num">02</span>
               <h3>Choose Dates &amp; Duration</h3>
               <p>Select flexible parking durations — whether for a 2-hour shopping trip or weekly business parking near your workplace.</p>
               <span class="step-tag-pill">Transparent Time Slots</span>
             </article>
-            <article class="step scroll-reveal">
+            <article class="step scroll-reveal stagger-3">
               <span class="step-num">03</span>
               <h3>Review &amp; Reserve in App</h3>
               <p>Inspect verified upfront tariffs, host access notes, and amenities before confirming your digital reservation.</p>
               <span class="step-tag-pill">No Hidden Markups</span>
             </article>
-            <article class="step scroll-reveal">
+            <article class="step scroll-reveal stagger-4">
               <span class="step-num">04</span>
               <h3>Follow Arrival Instructions</h3>
               <p>Navigate smoothly with turn-by-turn routing and present your digital QR or code for gate access upon arrival.</p>
@@ -303,7 +306,7 @@
       <!-- Designed for Drivers Section -->
       <section class="section driver-section" id="drivers" aria-labelledby="drivers-heading">
         <div class="container split-layout">
-          <div class="section-copy scroll-reveal">
+          <div class="section-copy scroll-reveal reveal-left">
             <span class="eyebrow">DESIGNED FOR DRIVERS</span>
             <h2 id="drivers-heading">A Seamless Journey From Search To Spot</h2>
             <p>OpenSpace eliminates the guesswork of urban parking in Sri Lanka with Live Availability, verified host information, clear photos, and digital check-ins.</p>
@@ -337,7 +340,7 @@
           </div>
 
           <!-- Professional Smartphone Device Showcase 2 (Driver Map) -->
-          <div class="product-visual driver-visual scroll-reveal">
+          <div class="product-visual driver-visual scroll-reveal reveal-scale">
             <div class="phone-showcase">
               <div class="ambient-glow map-ambient"></div>
               
@@ -380,7 +383,7 @@
       <!-- Earn With Your Space (Space Owners Section) -->
       <section class="section owner-section" id="owners" aria-labelledby="owners-heading">
         <div class="container split-layout owner-layout">
-          <div class="section-copy scroll-reveal">
+          <div class="section-copy scroll-reveal reveal-left">
             <span class="eyebrow">EARN WITH YOUR SPACE</span>
             <h2 id="owners-heading">A High 90% Host Payout Rate. Zero Listing Fees.</h2>
             <p>OpenSpace operates on an industry-leading revenue split: you retain 90% of every completed booking tariff. OpenSpace retains 10% to power verification, customer support, and system security.</p>
@@ -407,7 +410,7 @@
           </div>
 
           <!-- Professional Smartphone Device Showcase 3 (Host Listings) -->
-          <div class="product-visual host-visual scroll-reveal">
+          <div class="product-visual host-visual scroll-reveal reveal-scale">
             <div class="phone-showcase">
               <div class="ambient-glow host-ambient"></div>
               
@@ -456,7 +459,7 @@
             <p>From busy business districts to weekend matches, here are occasions the platform is built to support.</p>
           </div>
           <div class="use-grid">
-            <article class="use-card scroll-reveal">
+            <article class="use-card scroll-reveal stagger-1">
               <div class="use-icon-wrap">
                 <span class="use-icon">🏢</span>
               </div>
@@ -465,7 +468,7 @@
               <span class="use-tag-pill">Supports: Daily, Weekly &amp; Monthly arrangements</span>
             </article>
 
-            <article class="use-card scroll-reveal">
+            <article class="use-card scroll-reveal stagger-2">
               <div class="use-icon-wrap">
                 <span class="use-icon">🎟️</span>
               </div>
@@ -474,7 +477,7 @@
               <span class="use-tag-pill">Supports: Short-term hourly event slots</span>
             </article>
 
-            <article class="use-card scroll-reveal">
+            <article class="use-card scroll-reveal stagger-3">
               <div class="use-icon-wrap">
                 <span class="use-icon">🚆</span>
               </div>
@@ -489,7 +492,7 @@
       <!-- Pre-Launch Early Access Waitlist (Name, Email, Location with Fake Save Animation) -->
       <section class="section waitlist-section" id="waitlist" aria-labelledby="waitlist-heading">
         <div class="container">
-          <div class="waitlist-box scroll-reveal">
+          <div class="waitlist-box scroll-reveal reveal-scale">
             <!-- Normal Form State -->
             <div class="waitlist-content" id="waitlist-content-wrapper">
               <span class="eyebrow pill small"><span class="status-dot"></span> PRIORITY COLOMBO ONBOARDING</span>
@@ -625,7 +628,7 @@
 
       <!-- Closing CTA Section -->
       <section class="section closing-section" id="about" aria-labelledby="closing-heading">
-        <div class="container closing-inner scroll-reveal">
+        <div class="container closing-inner scroll-reveal reveal-scale">
           <!-- Replaced green square mark with OpenSpace Official Logo -->
           <div class="closing-logo-wrap">
             <img src="./assets/imgChatGptImageSep52026092712Pm11.png" alt="OpenSpace Logo" class="closing-brand-logo" width="220" height="52" />

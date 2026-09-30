@@ -217,11 +217,27 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 7. Scroll-Down Reveal Animations
+  // 7. Top Scroll Reading Progress & Header Glass Elevation
+  const progressBar = document.getElementById('scroll-progress');
+  const siteHeader = document.querySelector('.site-header');
+
+  function updateScrollProgress() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar && docHeight > 0) {
+      const pct = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+      progressBar.style.width = `${pct}%`;
+    }
+    if (siteHeader) {
+      siteHeader.classList.toggle('is-scrolled', scrollY > 20);
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
+
+  // 8. Scroll-Down Reveal Animations
   const revealElements = [...document.querySelectorAll('.scroll-reveal')];
-  revealElements.forEach((element, index) => {
-    element.style.setProperty('--reveal-delay', `${(index % 4) * 80}ms`);
-  });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries, obs) => {
@@ -232,16 +248,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      threshold: 0.06,
-      rootMargin: '60px 0px 60px 0px'
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px' // Triggers when 40px inside viewport so user visibly sees animation
     });
 
-    revealElements.forEach(el => observer.observe(el));
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      // If element is already in initial viewport on page load (Hero section), reveal with subtle stagger
+      if (rect.top < window.innerHeight - 30 && rect.bottom > 0) {
+        setTimeout(() => {
+          el.classList.add('is-revealed');
+        }, 80);
+      } else {
+        // Elements below the fold wait until user scrolls down!
+        observer.observe(el);
+      }
+    });
 
-    // Absolute safety timeout: reveal all elements so nothing stays hidden under automation or fast scrolls
-    setTimeout(() => {
-      revealElements.forEach(el => el.classList.add('is-revealed'));
-    }, 1800);
+    // Secondary scroll trigger for guaranteed responsiveness on all scroll types
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          const vh = window.innerHeight;
+          revealElements.forEach(el => {
+            if (!el.classList.contains('is-revealed')) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= vh - 40 && rect.bottom >= 0) {
+                el.classList.add('is-revealed');
+                observer.unobserve(el);
+              }
+            }
+          });
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
   } else {
     revealElements.forEach(el => el.classList.add('is-revealed'));
   }

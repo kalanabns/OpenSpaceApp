@@ -1837,12 +1837,22 @@ h3 {
 .support-email-tag {
   display: inline-block;
   margin-top: 10px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   background: var(--green-soft);
   color: var(--green);
   border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.support-email-tag:hover {
+  background: #dcfce7;
+  color: var(--green-dark);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 110, 47, 0.15);
 }
 
 .footer-bottom {

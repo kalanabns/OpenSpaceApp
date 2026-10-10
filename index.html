@@ -14,9 +14,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=2.2" />
+    <link rel="stylesheet" href="./styles.css?v=2.3" />
     <link rel="stylesheet" href="./polish.css?v=2.1" />
-    <script src="./main.js?v=2.3" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="./main.js?v=2.4" defer></script>
   </head>
   <body>
     <!-- Top Scroll Reading Progress Indicator -->
@@ -497,7 +498,7 @@
             <div class="waitlist-content" id="waitlist-content-wrapper">
               <span class="eyebrow pill small"><span class="status-dot"></span> PRIORITY COLOMBO ONBOARDING</span>
               <h2 id="waitlist-heading">Get Early Beta Access in Colombo</h2>
-              <p>Be the first to park with zero hassle, or be among our founding hosts in Colombo. Join the waitlist and complete the quick verification after submitting.</p>
+              <p>Be the first to park with zero hassle, or be among our founding hosts in Colombo. Join the waitlist today.</p>
               
               <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/xdeazarn" method="POST">
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
@@ -527,6 +528,10 @@
                   </div>
                 </div>
 
+                <div class="captcha-wrap">
+                  <div class="g-recaptcha" data-sitekey="6LfC_-ctAAAAAIzHxEVqLrTm97XD8vJ2ioMqD14H"></div>
+                </div>
+
                 <div class="form-actions">
                   <button type="submit" class="button button-primary waitlist-submit" id="waitlist-btn">
                     <span class="btn-text">Claim Early Access</span>
@@ -536,6 +541,12 @@
 
                 <div class="form-feedback" id="form-feedback" aria-live="polite"></div>
               </form>
+            </div>
+
+            <div class="waitlist-success" id="waitlist-success" role="status" hidden>
+              <h3>Thanks for joining the waitlist!</h3>
+              <p>Your signup was submitted. We'll email you when beta invitations are available.</p>
+              <button type="button" class="button button-outline" id="waitlist-reset">Register another person</button>
             </div>
 
           </div>

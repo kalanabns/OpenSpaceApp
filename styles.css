@@ -1478,6 +1478,23 @@ h3 {
   justify-content: center;
 }
 
+.captcha-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 420px) {
+  .captcha-wrap {
+    height: 65px;
+  }
+
+  .g-recaptcha {
+    transform: scale(0.82);
+    transform-origin: center top;
+  }
+}
+
 .waitlist-submit {
   min-width: 260px;
 }
@@ -1493,6 +1510,16 @@ h3 {
   font-weight: 600;
   min-height: 22px;
   color: #dc2626;
+}
+
+.waitlist-success h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.waitlist-success p {
+  margin: 0 0 24px;
+  color: var(--body);
 }
 
 /* ==========================================================================

@@ -98,6 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const emailInput = document.getElementById('waitlist-email');
   const locationInput = document.getElementById('waitlist-location');
   const submitBtn = document.getElementById('waitlist-btn');
+  const formWrapper = document.getElementById('waitlist-content-wrapper');
+  const successCard = document.getElementById('waitlist-success');
+  const resetBtn = document.getElementById('waitlist-reset');
 
   // Role toggle
   roleOptions.forEach(opt => {
@@ -109,14 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Let the browser POST to Formspree so its hosted CAPTCHA can be completed.
-  waitlistForm?.addEventListener('submit', (e) => {
+  // Submit the on-page reCAPTCHA token with the waitlist details.
+  waitlistForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (submitBtn?.disabled) return;
     if (feedbackEl) feedbackEl.textContent = '';
     
     // Validate Name
     const nameVal = nameInput?.value.trim();
     if (!nameVal || nameVal.length < 2) {
-      e.preventDefault();
       nameInput?.classList.add('input-error');
       if (feedbackEl) feedbackEl.textContent = 'Please enter your full name.';
       nameInput?.focus();
@@ -129,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailVal = emailInput?.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailVal || !emailRegex.test(emailVal)) {
-      e.preventDefault();
       emailInput?.classList.add('input-error');
       if (feedbackEl) feedbackEl.textContent = 'Please enter a valid email address.';
       emailInput?.focus();
@@ -140,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const locVal = locationInput?.value.trim();
     if (!locVal || locVal.length < 2) {
-      e.preventDefault();
       locationInput?.classList.add('input-error');
       if (feedbackEl) feedbackEl.textContent = 'Please enter your location.';
       locationInput?.focus();
@@ -149,15 +151,74 @@ document.addEventListener('DOMContentLoaded', () => {
       locationInput?.classList.remove('input-error');
     }
 
+    if (!window.grecaptcha?.getResponse) {
+      if (feedbackEl) feedbackEl.textContent = 'Verification is still loading. Please wait and try again.';
+      return;
+    }
+
+    let captchaToken;
+    try {
+      captchaToken = window.grecaptcha.getResponse();
+    } catch (_error) {
+      if (feedbackEl) feedbackEl.textContent = 'Verification could not load. Please refresh the page and try again.';
+      return;
+    }
+    if (!captchaToken) {
+      if (feedbackEl) feedbackEl.textContent = 'Please complete the reCAPTCHA checkbox.';
+      return;
+    }
+
     if (submitBtn) {
-      submitBtn.innerHTML = '<span>Opening secure verification...</span> ⏳';
+      submitBtn.disabled = true;
+      submitBtn.classList.add('is-loading');
+      submitBtn.innerHTML = '<span>Submitting...</span> ⏳';
+    }
+
+    try {
+      const formData = new FormData(waitlistForm);
+      formData.set('g-recaptcha-response', captchaToken);
+      const response = await fetch(waitlistForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) {
+        if (feedbackEl) {
+          feedbackEl.textContent = response.status === 429
+            ? 'Too many submissions right now. Please wait a minute and try again.'
+            : response.status === 400 || response.status === 422
+              ? 'Verification or form submission failed. Please try again.'
+              : 'We could not submit your details. Please try again.';
+        }
+        window.grecaptcha.reset();
+        return;
+      }
+
+      if (formWrapper) formWrapper.hidden = true;
+      if (successCard) successCard.hidden = false;
+    } catch (_error) {
+      if (feedbackEl) feedbackEl.textContent = 'Connection problem. Please check your internet and try again.';
+      window.grecaptcha.reset();
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
+      }
     }
   });
 
-  window.addEventListener('pageshow', () => {
-    if (submitBtn) {
-      submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
-    }
+  resetBtn?.addEventListener('click', () => {
+    waitlistForm?.reset();
+    window.grecaptcha?.reset();
+    roleOptions.forEach((option) => {
+      option.classList.toggle('active', option.querySelector('input[type="radio"]')?.checked === true);
+    });
+    [nameInput, emailInput, locationInput].forEach((input) => input?.classList.remove('input-error'));
+    if (feedbackEl) feedbackEl.textContent = '';
+    if (successCard) successCard.hidden = true;
+    if (formWrapper) formWrapper.hidden = false;
   });
 
   // 6. Dynamic Year in Footer

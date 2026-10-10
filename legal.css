@@ -74,7 +74,7 @@ body {
 }
 
 .legal-container {
-  width: min(100% - 40px, 920px);
+  width: min(100% - 48px, 1080px);
   margin-inline: auto;
 }
 
@@ -154,9 +154,9 @@ body {
 /* Main Content Card */
 .legal-content {
   flex: 1;
-  width: min(100% - 32px, 820px);
+  width: min(100% - 40px, 1080px);
   margin-block: 42px 64px;
-  padding: 52px 58px;
+  padding: 56px 64px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);

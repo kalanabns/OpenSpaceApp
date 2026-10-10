@@ -1484,6 +1484,21 @@ h3 {
   margin-bottom: 20px;
 }
 
+.waitlist-form .waitlist-privacy-note {
+  max-width: 590px;
+  margin: 0 auto 18px;
+  color: var(--body-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.waitlist-privacy-note a {
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 @media (max-width: 420px) {
   .captcha-wrap {
     height: 65px;

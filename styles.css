@@ -1416,6 +1416,33 @@ h3 {
   display: none;
 }
 
+.role-choice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.role-icon {
+  display: block;
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 420px) {
+  .role-choice {
+    flex-direction: column;
+    gap: 3px;
+    line-height: 1.25;
+  }
+
+  .role-selector .role-option {
+    min-height: 68px;
+    white-space: normal;
+  }
+}
+
 .role-option.active {
   background: var(--green);
   color: #ffffff;

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css?v=2.1" />
     <link rel="stylesheet" href="./polish.css?v=2.1" />
-    <script src="./main.js?v=2.1" defer></script>
+    <script src="./main.js?v=2.2" defer></script>
   </head>
   <body>
     <!-- Top Scroll Reading Progress Indicator -->
@@ -499,7 +499,8 @@
               <h2 id="waitlist-heading">Get Early Beta Access in Colombo</h2>
               <p>Be the first to park with zero hassle, or be among our founding hosts in Colombo. Reserve your priority pass today.</p>
               
-              <form class="waitlist-form" id="waitlist-form" novalidate>
+              <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/xdeazarn" method="POST" novalidate>
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
                 <div class="role-selector" role="radiogroup" aria-label="Select your role">
                   <label class="role-option active">
                     <input type="radio" name="role" value="driver" checked />
@@ -514,25 +515,15 @@
                 <div class="form-grid">
                   <div class="input-field">
                     <label for="waitlist-name" class="field-label">Full Name</label>
-                    <input type="text" id="waitlist-name" placeholder="e.g. Kasun Perera" required />
+                    <input type="text" id="waitlist-name" name="name" placeholder="e.g. Kasun Perera" autocomplete="name" maxlength="100" required />
                   </div>
                   <div class="input-field">
                     <label for="waitlist-email" class="field-label">Email Address</label>
-                    <input type="email" id="waitlist-email" placeholder="e.g. kasun@gmail.com" required />
+                    <input type="email" id="waitlist-email" name="email" placeholder="e.g. kasun@gmail.com" autocomplete="email" maxlength="254" required />
                   </div>
-                  <div class="input-field select-field">
-                    <label for="waitlist-location" class="field-label">Location in Colombo</label>
-                    <select id="waitlist-location" aria-label="Select Colombo Location">
-                      <option value="Colombo 01 - Fort / Pettah">Colombo 01 (Fort / Pettah)</option>
-                      <option value="Colombo 02 - Slave Island / Union Place">Colombo 02 (Slave Island / Union Place)</option>
-                      <option value="Colombo 03 - Kollupitiya" selected>Colombo 03 (Kollupitiya)</option>
-                      <option value="Colombo 04 - Bambalapitiya">Colombo 04 (Bambalapitiya)</option>
-                      <option value="Colombo 05 - Havelock Town">Colombo 05 (Havelock / Thimbirigasyaya)</option>
-                      <option value="Colombo 06 - Wellawatte">Colombo 06 (Wellawatte)</option>
-                      <option value="Colombo 07 - Cinnamon Gardens">Colombo 07 (Cinnamon Gardens)</option>
-                      <option value="Colombo 08 - Borella">Colombo 08 (Borella)</option>
-                      <option value="Greater Colombo Suburbs">Greater Colombo Suburbs</option>
-                    </select>
+                  <div class="input-field location-field">
+                    <label for="waitlist-location" class="field-label">Location</label>
+                    <input type="text" id="waitlist-location" name="location" placeholder="e.g. Colombo 03 or Kandy" autocomplete="address-level2" maxlength="100" required />
                   </div>
                 </div>
 
@@ -547,7 +538,7 @@
               </form>
             </div>
 
-            <!-- Fake Celebration Animation Card (Rendered via JS on submit) -->
+            <!-- Confirmation shown after Formspree accepts the submission -->
             <div class="waitlist-celebration" id="waitlist-celebration" hidden>
               <!-- Confetti Burst Particles -->
               <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
@@ -562,11 +553,11 @@
               </div>
 
               <h3 class="celebration-title" id="celebration-title">You're On The Priority List!</h3>
-              <p class="celebration-text" id="celebration-text">We've saved your early beta pass for Colombo. Watch your inbox for your private access code when rollout begins.</p>
+              <p class="celebration-text" id="celebration-text">Thanks for joining the waitlist. We'll email you when beta invitations are available.</p>
 
               <div class="celebration-details" id="celebration-details">
                 <span class="detail-badge" id="celebration-role-badge">🚗 Priority Driver</span>
-                <span class="detail-badge" id="celebration-loc-badge">📍 Colombo 03</span>
+                <span class="detail-badge" id="celebration-loc-badge">📍 Your location</span>
               </div>
 
               <button type="button" class="button button-outline celebration-reset-btn" id="celebration-reset">

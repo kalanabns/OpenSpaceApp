@@ -90,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. Pre-Launch Waitlist Form with Fake Save Animation
+  // 5. Pre-Launch Waitlist Form
   const waitlistForm = document.getElementById('waitlist-form');
   const roleOptions = document.querySelectorAll('.role-option');
   const feedbackEl = document.getElementById('form-feedback');
   const nameInput = document.getElementById('waitlist-name');
   const emailInput = document.getElementById('waitlist-email');
-  const locationSelect = document.getElementById('waitlist-location');
+  const locationInput = document.getElementById('waitlist-location');
   const submitBtn = document.getElementById('waitlist-btn');
   const formWrapper = document.getElementById('waitlist-content-wrapper');
   const celebrationCard = document.getElementById('waitlist-celebration');
@@ -113,9 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Form submit handler with fake save animation
-  waitlistForm?.addEventListener('submit', (e) => {
+  // Send the waitlist details to Formspree before showing confirmation.
+  waitlistForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (submitBtn?.disabled) return;
     if (feedbackEl) feedbackEl.textContent = '';
     
     // Validate Name
@@ -141,46 +142,72 @@ document.addEventListener('DOMContentLoaded', () => {
       emailInput?.classList.remove('input-error');
     }
 
-    const locVal = locationSelect?.value || 'Colombo 03 (Kollupitiya)';
-    const selectedRole = document.querySelector('input[name="role"]:checked')?.value || 'driver';
-
-    // Step 1: Animate button loading state
-    if (submitBtn) {
-      submitBtn.classList.add('is-loading');
-      submitBtn.innerHTML = '<span>Securing your priority pass...</span> ⏳';
+    const locVal = locationInput?.value.trim();
+    if (!locVal || locVal.length < 2) {
+      locationInput?.classList.add('input-error');
+      if (feedbackEl) feedbackEl.textContent = 'Please enter your location.';
+      locationInput?.focus();
+      return;
+    } else {
+      locationInput?.classList.remove('input-error');
     }
 
-    // Step 2: Fake save latency (650ms), then trigger Celebration Animation
-    setTimeout(() => {
-      // Hide form
+    const selectedRole = document.querySelector('input[name="role"]:checked')?.value || 'driver';
+
+    if (submitBtn) {
+      submitBtn.classList.add('is-loading');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Submitting...</span> ⏳';
+    }
+
+    try {
+      const response = await fetch(waitlistForm.action, {
+        method: 'POST',
+        body: new FormData(waitlistForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) {
+        if (feedbackEl) {
+          feedbackEl.textContent = response.status === 429
+            ? 'Too many submissions right now. Please wait a minute and try again.'
+            : 'We could not submit your details. Please try again.';
+        }
+        return;
+      }
+
       if (formWrapper) formWrapper.hidden = true;
-      
-      // Update Celebration details
+
       const titleEl = document.getElementById('celebration-title');
       const textEl = document.getElementById('celebration-text');
       const roleBadge = document.getElementById('celebration-role-badge');
       const locBadge = document.getElementById('celebration-loc-badge');
-      
+
       const firstName = nameVal.split(' ')[0];
       if (titleEl) titleEl.textContent = `You're on the list, ${firstName}!`;
       if (textEl) {
-        textEl.textContent = `We've reserved early beta access for you in ${locVal}. When public rollout begins in Colombo, we'll send your priority invite to ${emailVal}.`;
+        textEl.textContent = `Thanks for joining the beta waitlist. We'll contact you at ${emailVal} when invitations are available.`;
       }
       if (roleBadge) {
         roleBadge.textContent = selectedRole === 'driver' ? '🚗 Priority Driver' : '🏠 Founding Space Host';
       }
       if (locBadge) {
-        locBadge.textContent = `📍 ${locVal.split(' - ')[0]}`;
+        locBadge.textContent = `📍 ${locVal}`;
       }
 
-      // Show Celebration
       if (celebrationCard) {
         celebrationCard.hidden = false;
       }
-
-      // Trigger Confetti effect
       createConfetti();
-    }, 650);
+    } catch (_error) {
+      if (feedbackEl) feedbackEl.textContent = 'Connection problem. Please check your internet and try again.';
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
+      }
+    }
   });
 
   // Confetti Particle Generator
@@ -205,6 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (celebrationCard) celebrationCard.hidden = true;
     if (formWrapper) formWrapper.hidden = false;
     if (waitlistForm) waitlistForm.reset();
+    roleOptions.forEach((option) => {
+      option.classList.toggle('active', option.querySelector('input[type="radio"]')?.checked === true);
+    });
+    [nameInput, emailInput, locationInput].forEach((input) => input?.classList.remove('input-error'));
+    if (feedbackEl) feedbackEl.textContent = '';
     if (submitBtn) {
       submitBtn.classList.remove('is-loading');
       submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';

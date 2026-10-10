@@ -98,10 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const emailInput = document.getElementById('waitlist-email');
   const locationInput = document.getElementById('waitlist-location');
   const submitBtn = document.getElementById('waitlist-btn');
-  const formWrapper = document.getElementById('waitlist-content-wrapper');
-  const celebrationCard = document.getElementById('waitlist-celebration');
-  const confettiContainer = document.getElementById('confetti-container');
-  const resetBtn = document.getElementById('celebration-reset');
 
   // Role toggle
   roleOptions.forEach(opt => {
@@ -113,15 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Send the waitlist details to Formspree before showing confirmation.
-  waitlistForm?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (submitBtn?.disabled) return;
+  // Let the browser POST to Formspree so its hosted CAPTCHA can be completed.
+  waitlistForm?.addEventListener('submit', (e) => {
     if (feedbackEl) feedbackEl.textContent = '';
     
     // Validate Name
     const nameVal = nameInput?.value.trim();
     if (!nameVal || nameVal.length < 2) {
+      e.preventDefault();
       nameInput?.classList.add('input-error');
       if (feedbackEl) feedbackEl.textContent = 'Please enter your full name.';
       nameInput?.focus();
@@ -134,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailVal = emailInput?.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailVal || !emailRegex.test(emailVal)) {
+      e.preventDefault();
       emailInput?.classList.add('input-error');
       if (feedbackEl) feedbackEl.textContent = 'Please enter a valid email address.';
       emailInput?.focus();
@@ -144,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const locVal = locationInput?.value.trim();
     if (!locVal || locVal.length < 2) {
+      e.preventDefault();
       locationInput?.classList.add('input-error');
       if (feedbackEl) feedbackEl.textContent = 'Please enter your location.';
       locationInput?.focus();
@@ -152,93 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
       locationInput?.classList.remove('input-error');
     }
 
-    const selectedRole = document.querySelector('input[name="role"]:checked')?.value || 'driver';
-
     if (submitBtn) {
-      submitBtn.classList.add('is-loading');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Submitting...</span> ⏳';
-    }
-
-    try {
-      const response = await fetch(waitlistForm.action, {
-        method: 'POST',
-        body: new FormData(waitlistForm),
-        headers: { Accept: 'application/json' }
-      });
-
-      if (!response.ok) {
-        if (feedbackEl) {
-          feedbackEl.textContent = response.status === 429
-            ? 'Too many submissions right now. Please wait a minute and try again.'
-            : 'We could not submit your details. Please try again.';
-        }
-        return;
-      }
-
-      if (formWrapper) formWrapper.hidden = true;
-
-      const titleEl = document.getElementById('celebration-title');
-      const textEl = document.getElementById('celebration-text');
-      const roleBadge = document.getElementById('celebration-role-badge');
-      const locBadge = document.getElementById('celebration-loc-badge');
-
-      const firstName = nameVal.split(' ')[0];
-      if (titleEl) titleEl.textContent = `You're on the list, ${firstName}!`;
-      if (textEl) {
-        textEl.textContent = `Thanks for joining the beta waitlist. We'll contact you at ${emailVal} when invitations are available.`;
-      }
-      if (roleBadge) {
-        roleBadge.textContent = selectedRole === 'driver' ? '🚗 Priority Driver' : '🏠 Founding Space Host';
-      }
-      if (locBadge) {
-        locBadge.textContent = `📍 ${locVal}`;
-      }
-
-      if (celebrationCard) {
-        celebrationCard.hidden = false;
-      }
-      createConfetti();
-    } catch (_error) {
-      if (feedbackEl) feedbackEl.textContent = 'Connection problem. Please check your internet and try again.';
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('is-loading');
-        submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
-      }
+      submitBtn.innerHTML = '<span>Opening secure verification...</span> ⏳';
     }
   });
 
-  // Confetti Particle Generator
-  function createConfetti() {
-    if (!confettiContainer) return;
-    confettiContainer.innerHTML = '';
-    const colors = ['#22c55e', '#16a34a', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6'];
-    
-    for (let i = 0; i < 36; i++) {
-      const piece = document.createElement('div');
-      piece.className = 'confetti-piece';
-      piece.style.left = `${Math.random() * 100}%`;
-      piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      piece.style.animationDelay = `${Math.random() * 0.4}s`;
-      piece.style.animationDuration = `${1.8 + Math.random() * 1.2}s`;
-      confettiContainer.appendChild(piece);
-    }
-  }
-
-  // Reset celebration to form
-  resetBtn?.addEventListener('click', () => {
-    if (celebrationCard) celebrationCard.hidden = true;
-    if (formWrapper) formWrapper.hidden = false;
-    if (waitlistForm) waitlistForm.reset();
-    roleOptions.forEach((option) => {
-      option.classList.toggle('active', option.querySelector('input[type="radio"]')?.checked === true);
-    });
-    [nameInput, emailInput, locationInput].forEach((input) => input?.classList.remove('input-error'));
-    if (feedbackEl) feedbackEl.textContent = '';
+  window.addEventListener('pageshow', () => {
     if (submitBtn) {
-      submitBtn.classList.remove('is-loading');
       submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
     }
   });

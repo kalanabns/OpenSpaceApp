@@ -1443,7 +1443,7 @@ h3 {
   margin-bottom: 6px;
 }
 
-.input-field input, .select-field select {
+.input-field input {
   width: 100%;
   min-height: 52px;
   padding: 12px 16px;
@@ -1456,7 +1456,7 @@ h3 {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.input-field input:focus, .select-field select:focus {
+.input-field input:focus {
   border-color: var(--green);
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
   outline: none;
@@ -1493,116 +1493,6 @@ h3 {
   font-weight: 600;
   min-height: 22px;
   color: #dc2626;
-}
-
-/* Celebration State Animation */
-.waitlist-celebration {
-  position: relative;
-  padding: 20px 0;
-  animation: celebration-appear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes celebration-appear {
-  0% { opacity: 0; transform: scale(0.92) translateY(12px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.celebration-badge-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 22px;
-}
-
-.celebration-circle {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: #dcfce7;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 0 10px rgba(34, 197, 94, 0.15), 0 10px 30px rgba(0, 110, 47, 0.2);
-  animation: pulse-celebration 2.5s infinite;
-}
-
-@keyframes pulse-celebration {
-  0%, 100% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0.15), 0 10px 30px rgba(0, 110, 47, 0.2); }
-  50% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0.05), 0 14px 34px rgba(0, 110, 47, 0.3); }
-}
-
-.checkmark-svg {
-  width: 48px;
-  height: 48px;
-  stroke: #15803d;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.checkmark-stem {
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  animation: draw-check 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
-}
-
-@keyframes draw-check {
-  100% { stroke-dashoffset: 0; }
-}
-
-.celebration-title {
-  margin: 0 0 10px;
-  font-size: 1.8rem;
-  color: var(--ink);
-}
-
-.celebration-text {
-  max-width: 580px;
-  margin: 0 auto 24px;
-  color: var(--body);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-.celebration-details {
-  display: inline-flex;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
-.detail-badge {
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #334155;
-}
-
-.celebration-reset-btn {
-  margin: 0 auto;
-}
-
-/* Confetti Sparkles */
-.confetti-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.confetti-piece {
-  position: absolute;
-  width: 9px;
-  height: 14px;
-  opacity: 0.9;
-  border-radius: 2px;
-  animation: confetti-fall 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes confetti-fall {
-  0% { transform: translateY(-20px) rotate(0deg) scale(0.6); opacity: 1; }
-  100% { transform: translateY(400px) rotate(720deg) scale(1); opacity: 0; }
 }
 
 /* ==========================================================================
@@ -2374,13 +2264,6 @@ h3 {
     font-size: 0.95rem;
     margin-top: 6px;
   }
-  .celebration-title {
-    font-size: 1.35rem;
-  }
-  .celebration-text {
-    font-size: 0.86rem;
-  }
-
   /* FAQs */
   .faq-list details {
     padding: 14px 16px;

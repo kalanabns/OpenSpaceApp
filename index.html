@@ -14,9 +14,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=2.1" />
+    <link rel="stylesheet" href="./styles.css?v=2.2" />
     <link rel="stylesheet" href="./polish.css?v=2.1" />
-    <script src="./main.js?v=2.2" defer></script>
+    <script src="./main.js?v=2.3" defer></script>
   </head>
   <body>
     <!-- Top Scroll Reading Progress Indicator -->
@@ -497,9 +497,9 @@
             <div class="waitlist-content" id="waitlist-content-wrapper">
               <span class="eyebrow pill small"><span class="status-dot"></span> PRIORITY COLOMBO ONBOARDING</span>
               <h2 id="waitlist-heading">Get Early Beta Access in Colombo</h2>
-              <p>Be the first to park with zero hassle, or be among our founding hosts in Colombo. Reserve your priority pass today.</p>
+              <p>Be the first to park with zero hassle, or be among our founding hosts in Colombo. Join the waitlist and complete the quick verification after submitting.</p>
               
-              <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/xdeazarn" method="POST" novalidate>
+              <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/xdeazarn" method="POST">
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
                 <div class="role-selector" role="radiogroup" aria-label="Select your role">
                   <label class="role-option active">
@@ -538,32 +538,6 @@
               </form>
             </div>
 
-            <!-- Confirmation shown after Formspree accepts the submission -->
-            <div class="waitlist-celebration" id="waitlist-celebration" hidden>
-              <!-- Confetti Burst Particles -->
-              <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
-
-              <div class="celebration-badge-wrap">
-                <div class="celebration-circle">
-                  <svg class="checkmark-svg" viewBox="0 0 52 52">
-                    <circle class="checkmark-circle-bg" cx="26" cy="26" r="24" fill="none"/>
-                    <path class="checkmark-stem" fill="none" d="M14 27l7 7 16-16"/>
-                  </svg>
-                </div>
-              </div>
-
-              <h3 class="celebration-title" id="celebration-title">You're On The Priority List!</h3>
-              <p class="celebration-text" id="celebration-text">Thanks for joining the waitlist. We'll email you when beta invitations are available.</p>
-
-              <div class="celebration-details" id="celebration-details">
-                <span class="detail-badge" id="celebration-role-badge">🚗 Priority Driver</span>
-                <span class="detail-badge" id="celebration-loc-badge">📍 Your location</span>
-              </div>
-
-              <button type="button" class="button button-outline celebration-reset-btn" id="celebration-reset">
-                <span>Register Another Person / Space</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>

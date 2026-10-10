@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
-        submitBtn.innerHTML = '<span>Claim Early Access</span> <span aria-hidden="true">🚀</span>';
+        submitBtn.innerHTML = '<span class="btn-text">Claim Early Access</span> <span class="btn-icon las la-arrow-right" aria-hidden="true"></span>';
       }
     }
   });

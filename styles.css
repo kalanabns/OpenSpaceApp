@@ -604,6 +604,7 @@ h3 {
 
 .chip-icon {
   font-size: 1.1rem;
+  color: var(--green);
 }
 
 /* Chip Placement per showcase */
@@ -822,6 +823,7 @@ h3 {
 .trust-icon {
   font-size: 1.6rem;
   flex: none;
+  color: var(--green);
 }
 
 .trust-item strong {
@@ -1327,6 +1329,7 @@ h3 {
 
 .use-icon {
   font-size: 1.6rem;
+  color: var(--green);
 }
 
 .use-card h3 {

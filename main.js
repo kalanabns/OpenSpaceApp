@@ -227,6 +227,28 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // Remember dismissal of the informational cookie notice on this device.
+  const cookieNotice = document.getElementById('cookie-notice');
+  const cookieNoticeDismiss = document.getElementById('cookie-notice-dismiss');
+  const cookieNoticeKey = 'openspace-cookie-notice-dismissed-v1';
+  if (cookieNotice) {
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(cookieNoticeKey) === 'true';
+    } catch (_error) {
+      // The notice still works for this page when browser storage is disabled.
+    }
+    cookieNotice.hidden = dismissed;
+    cookieNoticeDismiss?.addEventListener('click', () => {
+      cookieNotice.hidden = true;
+      try {
+        localStorage.setItem(cookieNoticeKey, 'true');
+      } catch (_error) {
+        // The visitor can still dismiss the notice for this page.
+      }
+    });
+  }
+
   // 7. Top Scroll Reading Progress & Header Glass Elevation
   const progressBar = document.getElementById('scroll-progress');
   const siteHeader = document.querySelector('.site-header');

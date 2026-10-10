@@ -1799,6 +1799,113 @@ h3 {
   font-size: 0.78rem;
 }
 
+/* Small informational notice for the beta form's security cookie. */
+.cookie-notice {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(760px, calc(100vw - 48px));
+  padding: 18px 20px;
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  box-shadow: 0 18px 55px rgba(15, 23, 42, 0.18);
+}
+
+.cookie-notice[hidden] {
+  display: none;
+}
+
+.cookie-notice-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.cookie-notice-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.cookie-notice-copy strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.cookie-notice-copy p {
+  margin: 3px 0 0;
+  color: var(--body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.cookie-notice-copy a {
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookie-notice-dismiss {
+  flex: none;
+  min-height: 42px;
+  padding: 9px 17px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--green);
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.cookie-notice-dismiss:hover {
+  background: #005425;
+}
+
+.cookie-notice-dismiss:focus-visible,
+.cookie-notice-copy a:focus-visible {
+  outline: 3px solid var(--green-vibrant);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .cookie-notice {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .cookie-notice-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .cookie-notice-copy {
+    flex-basis: calc(100% - 42px);
+  }
+
+  .cookie-notice-dismiss {
+    width: 100%;
+  }
+}
+
 /* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
